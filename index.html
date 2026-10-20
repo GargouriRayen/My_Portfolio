@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohamed Rayen Gargouri — Portfolio</title>
+  <meta name="description" content="Étudiant ingénieur en informatique, Data Science, Machine Learning et Intelligence Artificielle." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --bg-soft: #ebe6dc;
+      --card: #fffcf7;
+      --ink: #1c1915;
+      --muted: #6b645b;
+      --line: #ddd6c8;
+      --accent: #0f6e6a;
+      --accent-dark: #0b524f;
+      --accent-soft: #dceeed;
+      --shadow: 0 18px 40px rgba(28, 25, 21, 0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Manrope, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .wrap { width: min(1100px, calc(100% - 32px)); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(14px);
+      background: rgba(244, 241, 234, 0.92);
+      border-bottom: 1px solid transparent;
+    }
+    header.scrolled { border-bottom-color: var(--line); }
+    nav {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+    }
+    .logo { font-weight: 800; letter-spacing: -0.03em; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 22px; font-size: 0.95rem; font-weight: 600; color: var(--muted); }
+    .nav-links a:hover { color: var(--ink); }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 8px 12px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+      padding: 64px 0 40px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      margin-bottom: 14px;
+    }
+    .lead { font-size: 1.08rem; color: var(--muted); max-width: 58ch; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-ghost { background: var(--card); border-color: var(--line); }
+    .meta { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 28px; color: var(--muted); font-size: 0.95rem; }
+    .photo-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+    .photo-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      max-height: 520px;
+      object-fit: cover;
+      object-position: center 12%;
+      border-radius: 22px;
+      background: #c8e4f0;
+    }
+    .photo-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 8px 6px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    section { padding: 36px 0; scroll-margin-top: 84px; }
+    footer { scroll-margin-top: 84px; }
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    h2 { font-size: 1.7rem; letter-spacing: -0.04em; }
+    .kicker { color: var(--accent); font-weight: 800; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+    .card h3 { font-size: 1.08rem; margin-bottom: 6px; }
+    .card p, .card li { color: var(--muted); }
+    .date {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    ul { padding-left: 18px; }
+    li + li { margin-top: 6px; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip {
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .timeline { display: grid; gap: 16px; }
+    footer {
+      padding: 40px 0 56px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      margin-top: 24px;
+    }
+    .contact-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+    .contact-row a { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px; font-weight: 700; }
+    .contact-row a:hover { border-color: var(--accent); color: var(--accent-dark); }
+
+    @media (max-width: 860px) {
+      .hero, .grid-2 { grid-template-columns: 1fr; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        z-index: 50;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 16px;
+        flex-direction: column;
+        gap: 12px;
+        box-shadow: var(--shadow);
+      }
+      .nav-links.open { display: flex; }
+      .menu-btn { display: block; }
+      .hero { padding-top: 28px; gap: 24px; }
+      .photo-card img {
+        aspect-ratio: 1 / 1;
+        max-height: 280px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap">
+      <a class="logo" href="#accueil">Rayen<span>.</span></a>
+      <button class="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false">Menu</button>
+      <div class="nav-links">
+        <a href="#apropos">À propos</a>
+        <a href="#competences">Compétences</a>
+        <a href="#experiences">Expériences</a>
+        <a href="#projets">Projets</a>
+        <a href="#formation">Formation</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="accueil" class="wrap hero">
+      <div>
+        <p class="eyebrow">Data Engineering · IA · Développement</p>
+        <h1>Mohamed Rayen Gargouri</h1>
+        <p class="lead">
+          Étudiant en cycle ingénieur en informatique, je m’intéresse à la Data Science,
+          au Machine Learning et à l’Intelligence Artificielle. J’aime concevoir des
+          solutions concrètes autour des données, des modèles de langage et des applications modernes.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="CV%20Rayen.pdf" download>Télécharger le CV</a>
+          <a class="btn btn-ghost" href="mailto:gargourirayen@gmail.com">Me contacter</a>
+        </div>
+        <div class="meta">
+          <span>Sfax, Tunisie</span>
+          <span>+216 28 434 335</span>
+          <span>gargourirayen@gmail.com</span>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="rayen.jpg" alt="Portrait de Mohamed Rayen Gargouri" />
+        <div class="photo-caption">
+          <span>Ingénieur informatique · IIT Tunisie</span>
+          <span>2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="apropos" class="wrap">
+      <div class="section-title">
+        <div>
+          <p class="kicker">Profil</p>
+          <h2>À propos</h2>
+        </div>
+      </div>
+      <div class="card">
+        <p>
+          Après une licence en Développement des Systèmes d’Information à l’ISET Sfax,
+          je poursuis un diplôme d’ingénieur en informatique à l’IIT. Mon parcours mêle
+          développement logiciel, analyse de données et intelligence artificielle (
+          extraction d’information, classification, prédiction, dashboards) et
+          applications web/mobile.
+        </p>
+      </div>
+    </section>
+
+    <section id="competences" class="wrap">
+      <div class="section-title">
+        <div>
+          <p class="kicker">Savoir-faire</p>
+          <h2>Compétences</h2>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip">Python &amp; programmation orientée données</span>
+        <span class="chip">Machine Learning</span>
+        <span class="chip">Prétraitement des données</span>
+        <span class="chip">Power BI</span>
+        <span class="chip">LLM, RAG &amp; IA générative</span>
+        <span class="chip">SQL · MySQL · PostgreSQL</span>
+        <span class="chip">Firebase · MongoDB</span>
+        <span class="chip">C · Java</span>
+        <span class="chip">React.js · Next.js · Node.js</span>
+        <span class="chip">Spring Boot</span>
+        <span class="chip">Flutter · Android</span>
+        <span class="chip">.NET · JavaFX</span>
+        <span class="chip">Arabe · Français B2 · Anglais B2</span>
+      </div>
+    </section>
+
+    <section id="experiences" class="wrap">
+      <div class="section-title">
+        <div>
+          <p class="kicker">Parcours</p>
+          <h2>Expériences professionnelles</h2>
+        </div>
+      </div>
+      <div class="timeline">
+        <article class="card">
+          <span class="date">Février 2026 · 4 mois</span>
+          <h3>Projet de fin d’études — Lunar TC</h3>
+          <p>Système intelligent d’analyse des emails</p>
+          <ul>
+            <li>Automatisation de l’analyse des emails avec extraction via IMAP.</li>
+            <li>Classification en réclamation, demande ou autre.</li>
+            <li>Traitement, nettoyage et analyse des données avec Python.</li>
+            <li>Intégration de modèles de langage et approche RAG.</li>
+            <li>Comparaison de plusieurs LLM locaux.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <span class="date">Février 2025 · 1 mois</span>
+          <h3>Stage de perfectionnement — Spark-IT</h3>
+          <p>Système intelligent d’analyse et de traitement de CV</p>
+          <ul>
+            <li>Frontend React.js et backend Spring Boot, données MySQL.</li>
+            <li>Intégration d’une API OCR pour extraire les informations automatiquement.</li>
+            <li>Traitement de CV au format PDF et image.</li>
+            <li>Extraction des compétences, formations, expériences, langues, certifications et coordonnées.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="projets" class="wrap">
+      <div class="section-title">
+        <div>
+          <p class="kicker">Réalisations</p>
+          <h2>Projets clés</h2>
+        </div>
+      </div>
+      <div class="grid-2">
+        <article class="card">
+          <h3>Analyse intelligente d’emails</h3>
+          <p>Système d’analyse et de classification d’emails, avec expérimentation de plusieurs modèles de langage locaux.</p>
+        </article>
+        <article class="card">
+          <h3>Prédiction d’attrition</h3>
+          <p>Projet Machine Learning : préparation des données, entraînement, comparaison et évaluation de plusieurs modèles.</p>
+        </article>
+        <article class="card">
+          <h3>Business Intelligence</h3>
+          <p>Dashboard interactif pour une entreprise d’électronique : analyse des ventes, KPI et suivi des performances.</p>
+        </article>
+        <article class="card">
+          <h3>E-commerce mobile</h3>
+          <p>Application mobile de e-commerce réalisée avec Flutter, Next.js et Firebase.</p>
+        </article>
+        <article class="card">
+          <h3>Gestion de librairie</h3>
+          <p>Application desktop de gestion de librairie développée avec JavaFX.</p>
+        </article>
+        <article class="card">
+          <h3>Service après-vente</h3>
+          <p>Application web SAV développée avec .NET.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="formation" class="wrap">
+      <div class="section-title">
+        <div>
+          <p class="kicker">Études</p>
+          <h2>Formation</h2>
+        </div>
+      </div>
+      <div class="grid-2">
+        <article class="card">
+          <span class="date">2026 — présent</span>
+          <h3>Diplôme d’ingénieur en informatique</h3>
+          <p>Génie informatique · IIT — Tunisie</p>
+        </article>
+        <article class="card">
+          <span class="date">2023 — 2026</span>
+          <h3>Licence nationale en technologie de l’informatique</h3>
+          <p>Développement des systèmes d’information · ISET Sfax — Tunisie</p>
+        </article>
+        <article class="card">
+          <span class="date">Baccalauréat</span>
+          <h3>Technique — mention Bien</h3>
+          <p>Lycée 9 Avril 1938 — Sfax</p>
+        </article>
+        <article class="card">
+          <span class="date">Vie associative</span>
+          <h3>Engagement associatif</h3>
+          <p>Assistant Finance, Microsoft Tech Club ISET Sfax (2025–2026). Membre actif Aero-ISET Sfax et club de robotique ARCI.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="wrap">
+      <p class="kicker">Contact</p>
+      <h2>Travaillons ensemble</h2>
+      <p>Ouvert aux projets, stages et opportunités autour de la data, de l’IA et du développement.</p>
+      <div class="contact-row">
+        <a href="mailto:gargourirayen@gmail.com">gargourirayen@gmail.com</a>
+        <a href="tel:+21628434335">+216 28 434 335</a>
+        <a href="CV%20Rayen.pdf" download>CV PDF</a>
+      </div>
+      <p style="margin-top:28px">© 2026 Mohamed Rayen Gargouri · Sfax, Tunisie</p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.querySelector("header");
+    const btn = document.querySelector(".menu-btn");
+    const links = document.querySelector(".nav-links");
+    window.addEventListener("scroll", () => header.classList.toggle("scrolled", window.scrollY > 8));
+    btn.addEventListener("click", () => {
+      const open = links.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    links.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => {
+      links.classList.remove("open");
+      btn.setAttribute("aria-expanded", "false");
+    }));
+  </script>
+</body>
+</html>
